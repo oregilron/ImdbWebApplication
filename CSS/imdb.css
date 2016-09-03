@@ -1,0 +1,90 @@
+
+body {
+	 
+	  /* background-color: #b7d1c4 */
+}
+
+h1 {
+
+	font-family: Verdana;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	color: #ffffff; 
+}
+
+h3 {
+
+    font-family: Verdana;
+	font-weight: bold;
+}
+
+
+#header {
+
+    position: relative;
+    top: -10px;
+    background-color: #4CAF50;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#movieName {
+    
+    position: relative;
+
+}
+
+#movieJanner {
+    
+    position: relative;
+	
+}
+
+#movieTime {
+
+    position: relative;
+	
+}
+
+input[type=text], select {
+    
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+}
+
+input[type=button] {
+
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#addDiv {
+    
+    width: 20%;
+}
+
+#div1 {
+    
+    width: 20%;
+
+}
+
+ul {
+	
+    font-family: Verdana;
+    font-weight: bold;
+}
