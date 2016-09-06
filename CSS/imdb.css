@@ -4,6 +4,13 @@ body {
 	  /* background-color: #b7d1c4 */
 }
 
+#imdbImage {
+	padding-top: 25px;
+	padding-bottom: 25px;
+	width: 200px;
+	height: 80px;
+}
+
 h1 {
 
 	font-family: Verdana;
@@ -23,9 +30,10 @@ h3 {
 
 #header {
 
+	text-align: center;
     position: relative;
     top: -10px;
-    background-color: #4CAF50;
+    background-color: #000000;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
@@ -63,7 +71,7 @@ input[type=text], select {
 input[type=button] {
 
     width: 100%;
-    background-color: #4CAF50;
+    background-color: #000000;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -73,14 +81,33 @@ input[type=button] {
 }
 
 #addDiv {
-    
+	display: inline-block;
+    /*margin: auto;*/
     width: 20%;
+    margin-left: 50px;
 }
 
-#div1 {
-    
-    width: 20%;
+#searchdiv {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
 
+}
+
+#imgdiv {
+	
+	width: 30%;
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 50px;
+}
+
+#imdbpic {
+
+	width: 600px;
+	height: 450px;
+	
+	vertical-align: top;
 }
 
 ul {
