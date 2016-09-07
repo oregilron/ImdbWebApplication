@@ -3,7 +3,7 @@
 
 //application "state" array 
 var liArray = [];
-
+var counter = 0;
 
 function handle(e){
   
@@ -12,12 +12,9 @@ function handle(e){
   	
   	// Ensure it is only this code that run
     e.preventDefault(); 
-
-    var catchSearch = document.getElementById("search");
     
-    // temporary - checking myself
-    console.log(catchSearch.value);
-    console.log(liArray[0].innerHTML.indexOf("e"));
+    //catching the text within the search box
+    var catchSearch = document.getElementById("search");
     
     //call showList with the text in the searchbox as a value
     showList(catchSearch.value);
@@ -34,8 +31,8 @@ function addMovie (e) {
   
   //create a button element that will be used to delete list item
   var delButton = document.createElement("button");
-  delButton.setAttribute('value', 'X');
-  //delButton.setAttribute('onclick',deleteLi());
+  //delButton.value = "X";
+  delButton.onclick = deleteLi;
   var buttonData = document.createTextNode("X");
   delButton.appendChild(buttonData);
 
@@ -45,23 +42,15 @@ function addMovie (e) {
 
 	 
   //"create" text node to assign in the new "li" 
-  var newName = document.createTextNode(movieName.value + ", ");
+  var newName = document.createTextNode(movieName.value + 
+  	", " + movieJanner.value + ", " + movieTime.value + " ");
   //assinging the text node to the new "li"
   newItem.appendChild(newName);
 
-  //"create" another text node to append in the new "li" 
-  var newJanner = document.createTextNode(movieJanner.value + ", ");
-  //appending the text node to the new "li"
-  newItem.appendChild(newJanner);
-
-  //"create" another text node to append in the new "li" 
-  var newTime = document.createTextNode(movieTime.value + " ");
-  //appending the text node to the new "li"
-  newItem.appendChild(newTime);
-  //appending the the delete nutton to the "li" element
+  //adding the button option to the "li"
   newItem.appendChild(delButton);
   
-  //push the "li" to the stse array
+  //push the "li" to the state array
   liArray.push(newItem);
   
   //call showList with the text in the null as a value
@@ -89,55 +78,61 @@ function disCheck() {
 	}else {
 		document.getElementById("buttn").disabled = true;
 	}
-}
+};
 
 
 //this function is responsible for presenting the item in the ul.
 function showList (e) {
-
-  //// temporary - checking myself
-  console.log(e);
 
   //in case e == null (probably when calling the function 
   //from addMovie or when serach box is empty). 
   //will present all the elements in the array- all the list.
   if (e == null){
  
-   for (var i = 0; i < liArray.length; i++) {
-
    	 var currentLi = document.getElementById("anchor"); 
   	 var ul = document.getElementById("mList");
-  	 ul.insertBefore(liArray[i], currentLi);
-   
-   } 
+  	 ul.insertBefore(liArray[counter], currentLi);
+   		counter ++;
+ 
   //in case e !== null (probably when calling the function 
   //from serach box and the serch box is not empty). 
   //will present all the elements in the array that 
-  //the string in the serch bow is a substring of them.
+  //the string in the search box is a substring of them.
   }else {
      
-     for (var i = 0; i < liArray.length; i++) {
-       // temporary - checking myself
-       console.log("bla");
-       console.log(liArray[i].innerHTML.indexOf(e));
-       
+     var ul = document.getElementById("mList");
 
+     //empty the "ul"
+     ul.innerHTML = '';
+    
+     for (var i = 0; i < liArray.length; i++) {
+   
        if (liArray[i].innerHTML.indexOf(e) !== -1){
+   	   
    	   var currentLi = document.getElementById("anchor"); 
-   	   console.log("here");
   	   var ul = document.getElementById("mList");
   	   ul.insertBefore(liArray[i], currentLi);
-       
+  	   
        }
-   }
-  };
-
-
-}
+    }
+  }
+};
 
 //this function is responsible for deleting a list item
 //when pressing the 'X' button.
 function deleteLi (){
 
-	console.log("I'm working!");
-}
+  //assingning x the "li" parent element of the button
+	var liParent = this.parentNode;
+
+  //constructing assistance array for manipulating 
+  //the existing array and delete from the original array
+  //the "li" whom the "X" button of his was submitted
+  var tempArray = liArray.filter(function(num,i){ 
+      return i !== (liArray.indexOf(liParent))  } );
+  liArray = tempArray;
+	
+  //removing the "li"
+  this.parentNode.remove();
+	counter--;
+};
