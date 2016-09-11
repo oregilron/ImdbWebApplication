@@ -1,7 +1,5 @@
 
-body {
-	 
-	  /* background-color: #b7d1c4 */
+body { 
 }
 
 #imdbImage {
@@ -12,7 +10,6 @@ body {
 }
 
 h1 {
-
 	font-family: Verdana;
 	font-weight: bold;
 	text-align: center;
@@ -22,14 +19,12 @@ h1 {
 }
 
 h3 {
-
     font-family: Verdana;
 	font-weight: bold;
 }
 
 
 #header {
-
 	text-align: center;
     position: relative;
     top: -10px;
@@ -39,37 +34,27 @@ h3 {
 }
 
 #movieName {
-    
     position: relative;
-
 }
 
 #movieJanner {
-    
     position: relative;
-	
 }
 
 #movieTime {
-
     position: relative;
-	
 }
 
 input[type=text], select {
-    
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
-
 }
 
 input[type=button] {
-
     width: 100%;
     background-color: #000000;
     color: white;
@@ -82,7 +67,6 @@ input[type=button] {
 
 #addDiv {
 	display: inline-block;
-    /*margin: auto;*/
     width: 20%;
     margin-left: 50px;
 }
@@ -91,11 +75,9 @@ input[type=button] {
     display: inline-block;
     width: 30%;
     vertical-align: top;
-
 }
 
 #imgdiv {
-	
 	width: 30%;
 	display: inline-block;
 	vertical-align: top;
@@ -103,15 +85,17 @@ input[type=button] {
 }
 
 #imdbpic {
-
 	width: 600px;
 	height: 450px;
-	
 	vertical-align: top;
 }
 
 ul {
-	
     font-family: Verdana;
     font-weight: bold;
+}
+ li:hover {
+    color: #cc0000;
+    font-weight: bold;
+    text-decoration: none;
 }

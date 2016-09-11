@@ -1,16 +1,13 @@
 
-
-
 //application "state" array 
 var liArray = [];
-var counter = 0;
 
 function handle(e){
   
   //tirgers the "enter" event
   if(e.keyCode === 13){
   	
-  	// Ensure it is only this code that run
+    // Ensure it is only this code that run
     e.preventDefault(); 
     
     //catching the text within the search box
@@ -31,6 +28,7 @@ function addMovie (e) {
   
   //create a button element that will be used to delete list item
   var delButton = document.createElement("button");
+ 
   //delButton.value = "X";
   delButton.onclick = deleteLi;
   var buttonData = document.createTextNode("X");
@@ -42,8 +40,7 @@ function addMovie (e) {
 
 	 
   //"create" text node to assign in the new "li" 
-  var newName = document.createTextNode(movieName.value + 
-  	", " + movieJanner.value + ", " + movieTime.value + " ");
+  var newName = document.createTextNode(movieName.value + ", " + movieJanner.value + ", " + movieTime.value + " ");
   //assinging the text node to the new "li"
   newItem.appendChild(newName);
 
@@ -70,14 +67,14 @@ function disCheck() {
 	var movieTime = document.getElementById("movieTime");
 	
 	//condition for checking false insertion of "li"'s
-	if ((movieName.value !== "") && (movieJanner.value !== "") && 
-		(movieTime.value !== "")) {
+	if ((movieName.value !== "") && (movieJanner.value !== "") && (movieTime.value !== "")) {
 
 		document.getElementById("buttn").disabled = false;
 	
 	}else {
 		document.getElementById("buttn").disabled = true;
 	}
+
 };
 
 
@@ -89,10 +86,10 @@ function showList (e) {
   //will present all the elements in the array- all the list.
   if (e == null){
  
-   	 var currentLi = document.getElementById("anchor"); 
-  	 var ul = document.getElementById("mList");
-  	 ul.insertBefore(liArray[counter], currentLi);
-   		counter ++;
+   	var currentLi = document.getElementById("anchor"); 
+  	var ul = document.getElementById("mList");
+
+  	ul.insertBefore(liArray[liArray.length -1 ], currentLi);
  
   //in case e !== null (probably when calling the function 
   //from serach box and the serch box is not empty). 
@@ -100,20 +97,20 @@ function showList (e) {
   //the string in the search box is a substring of them.
   }else {
      
-     var ul = document.getElementById("mList");
+    var ul = document.getElementById("mList");
 
-     //empty the "ul"
-     ul.innerHTML = '';
+    //empty the "ul"
+    ul.innerHTML = '';
     
-     for (var i = 0; i < liArray.length; i++) {
+    for (var i = 0; i < liArray.length; i++) {
    
-       if (liArray[i].innerHTML.indexOf(e) !== -1){
+      if (liArray[i].innerHTML.indexOf(e) !== -1){
    	   
-   	   var currentLi = document.getElementById("anchor"); 
-  	   var ul = document.getElementById("mList");
-  	   ul.insertBefore(liArray[i], currentLi);
+   	  var currentLi = document.getElementById("anchor"); 
+  	  var ul = document.getElementById("mList");
+  	  ul.insertBefore(liArray[i], currentLi);
   	   
-       }
+      }
     }
   }
 };
@@ -129,10 +126,9 @@ function deleteLi (){
   //the existing array and delete from the original array
   //the "li" whom the "X" button of his was submitted
   var tempArray = liArray.filter(function(num,i){ 
-      return i !== (liArray.indexOf(liParent))  } );
+      return num !== liParent});
   liArray = tempArray;
 	
   //removing the "li"
   this.parentNode.remove();
-	counter--;
 };
