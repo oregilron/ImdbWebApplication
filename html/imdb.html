@@ -1,0 +1,51 @@
+
+<html>
+	
+	<head>
+	  <link type="text/css" rel="stylesheet"
+	   href="..\CSS\imdb.css" MEDIA="screen"/>
+	  <script src="..\JS\imdb.js"></script>
+	  <title>Imdb Web Application</title>
+	</head>
+	
+	<body>
+
+		<div id="header">
+		  <h1>Assigment 1</h1>
+		  <img id="imdbImage" 
+		  src="http://www.brafton.com/wp-content/uploads/2016/02/IMDb-icon.png">
+		</div>		
+		
+		<div id="searchdiv">
+		  <h3>Search: </h3>
+		  <input  type="text" id="search" 
+		  name="searchbar" onkeypress="handle(event)"><br>
+		    <div id="tab">
+		      <h3>Movies List:</h3>
+		      <ul id= "mList">
+		 	    <li id="anchor" hidden></li>
+		      </ul>
+		    </div>
+		</div>
+
+		<div id="addDiv">
+		  <h3>Add new movie:</h3>
+		  Movie name:<br>
+		  <input type="text" id="movieName" oninput="disCheck()"><br>
+		  Movie Janner:<br>
+		  <input type="text" id="movieJanner" oninput="disCheck()"><br>
+		  Movie Duration: <br>
+		  <input type="text" id="movieTime" oninput="disCheck()"><br>
+		  <input type="button" id="buttn" onclick="addMovie(event)" 
+		  value="Add Movie" disabled>
+		</div>
+
+		<div id="imgdiv">
+		  <a href="">
+		    <img id="imdbpic" src="http://www.androidcrush.com/wp-content/uploads//2016/03/best-Free-movie-apps-for-android-2016.jpg">
+		  </a>
+		</div>
+		
+	</body>
+
+</html>
