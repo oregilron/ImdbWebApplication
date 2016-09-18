@@ -224,3 +224,14 @@ function sendList(e){
   
   xhr.send(JSON.stringify( tempArr ) );
 };
+
+function sort (e){
+
+  
+  liArray.sort(function(a,b){
+    if (a.innerText > b.innerText) return 1;
+    if (a.innerText < b.innerText) return -1;
+    
+    return 0;
+  });
+  showList("X");
