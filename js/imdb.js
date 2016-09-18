@@ -2,6 +2,8 @@
 //application "state" array 
 var liArray = [];
 
+
+
 function handle(e){
   
   //tirgers the "enter" event
@@ -18,6 +20,8 @@ function handle(e){
    }
   
  };
+
+
 
 function addMovie (e) {
 
@@ -43,7 +47,7 @@ function addMovie (e) {
   var create = document.createTextNode;
    
   //"create" text node to assign in the new "li" 
-  var newName = create(name + ", " + janner + ", " + time + " ");
+  var newName = document.createTextNode(name + ", " + janner + ", " + time + " ");
   //assinging the text node to the new "li"
   newItem.appendChild(newName);
 
@@ -57,7 +61,7 @@ function addMovie (e) {
   showList(null);
 };
 
-$( '.name' );
+
 
 //this function purpose is to prevent sumbitting 
 //unfull movie data.
@@ -79,6 +83,7 @@ function disCheck() {
   }
 
 };
+
 
 
 //this function is responsible for presenting the item in the ul.
@@ -118,6 +123,7 @@ function showList (e) {
   }
 };
 
+
 //this function is responsible for deleting a list item
 //when pressing the 'X' button.
 function deleteLi (){
@@ -132,4 +138,89 @@ function deleteLi (){
   
   //removing the "li"
     this.parentNode.remove();
+};
+
+
+
+function addNewMovies(e){
+
+var xhr = new XMLHttpRequest();
+xhr.open('GET', '/movies', true);
+xhr.responseType = 'text';
+
+
+xhr.onload = function(e) {
+  if (this.status == 200) {
+    var temp = xhr.response;
+    var arr = JSON.parse(temp);
+
+      for (var i = 0; i < arr.length; i++) {
+  
+      var name = arr[i].name;
+      var time = arr[i].time;
+      var janner = arr[i].janner; 
+
+      var newItem = document.createElement("li");
+      var n = document.createTextNode(name + ", " + janner + ", " + time + " ");
+
+      var delButton = document.createElement("button");
+      delButton.onclick = deleteLi;
+      var buttonData = document.createTextNode("X");
+      delButton.appendChild(buttonData);
+
+
+      newItem.appendChild(n);
+      newItem.appendChild(delButton);
+
+      liArray.push(newItem);
+      
+      showList(null);
+    }
+  }
+}
+xhr.send();
+
+};
+
+
+
+function sendList(e){
+
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    if (this.status == 200) {
+      console.log(this.responseText);
+    }
+  };
+
+  xhr.open('POST', '/movies', true);
+  xhr.setRequestHeader("Content-type", "application/json");
+  var tempArr = [];
+  liArray.forEach(y);
+
+  function y (li){
+    var tempObj = new Object();
+  
+    var x = li.innerText;
+    var y = x.indexOf(',');
+  
+    var name = x.slice(0,y);
+  
+    x = x.slice(y+2);
+    var y = x.indexOf(',');
+ 
+    var janner = x.slice(0,y);
+
+    var y = x.indexOf(',');
+    x = x.slice(y+2);
+ 
+    var time = x.slice(0,x.length-2);
+  
+    tempObj.name = name;
+    tempObj.janner = janner;
+    tempObj.time = time;
+    tempArr.push(tempObj);
+  }
+  
+  xhr.send(JSON.stringify( tempArr ) );
 };
