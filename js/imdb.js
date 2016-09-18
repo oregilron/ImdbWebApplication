@@ -43,7 +43,7 @@ function addMovie (e) {
   var create = document.createTextNode;
    
   //"create" text node to assign in the new "li" 
-  var newName = create(name + ", " + janner + ", " + time + " ");
+  var newName = document.createTextNode(name + ", " + janner + ", " + time + " ");
   //assinging the text node to the new "li"
   newItem.appendChild(newName);
 
@@ -57,7 +57,7 @@ function addMovie (e) {
   showList(null);
 };
 
-$( '.name' );
+
 
 //this function purpose is to prevent sumbitting 
 //unfull movie data.
@@ -132,4 +132,62 @@ function deleteLi (){
   
   //removing the "li"
     this.parentNode.remove();
+};
+
+function addNewMovies(e){
+
+var xhr = new XMLHttpRequest();
+xhr.open('GET', '/movies', true);
+xhr.responseType = 'text';
+
+
+xhr.onload = function(e) {
+  if (this.status == 200) {
+    var temp = xhr.response;
+    var arr = JSON.parse(temp);
+
+    
+    //arr.forEach(y);
+
+    //function y (item){
+      for (var i = 0; i < arr.length; i++) {
+  
+      var name = arr[i].name;
+      var time = arr[i].time;
+      var janner = arr[i].janner; 
+
+      var newItem = document.createElement("li");
+      var n = document.createTextNode(name + ", " + janner + ", " + time + " ");
+
+      var delButton = document.createElement("button");
+      delButton.onclick = deleteLi;
+      var buttonData = document.createTextNode("X");
+      delButton.appendChild(buttonData);
+
+
+      newItem.appendChild(n);
+      newItem.appendChild(delButton);
+
+      liArray.push(newItem);
+      
+      showList(null);
+    }
+  }
+}
+xhr.send();
+
+};
+
+function sendList(e){
+
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    if (this.status == 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhr.open('POST', '/movies', true);
+  xhr.setRequestHeader("Content-type", "application/json");
+  console.log(  );
+  xhr.send(JSON.stringify( [ {name:'sdfsdf' } , {name: 'asfasd' } ] ) );
 };
